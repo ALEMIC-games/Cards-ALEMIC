@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://sprites/magicion.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=3]
@@ -23,8 +23,6 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 2 ]
 }
 
-[sub_resource type="GDScript" id=3]
-
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 3 )
 
@@ -43,8 +41,3 @@ frame = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/idle = SubResource( 2 )
-
-[node name="Card" type="Control" parent="."]
-script = SubResource( 3 )
-
-[connection signal="toggled" from="Card/Card" to="Card/Card" method="_on_Card_toggled"]
