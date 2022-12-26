@@ -49,3 +49,5 @@ text = "Anigilyatornaya
  pushka"
 align = 1
 autowrap = true
+
+[connection signal="toggled" from="." to="." method="_on_Card_toggled"]
