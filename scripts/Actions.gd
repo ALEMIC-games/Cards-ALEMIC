@@ -1,6 +1,17 @@
 extends Node
 
 var player
+var unhandled_button
+
+func _ready():
+	var unh_btn_canv = CanvasLayer.new()
+	unh_btn_canv.layer = -1
+	get_tree().current_scene.add_child(unh_btn_canv)
+	unhandled_button = Button.new()
+	unhandled_button.anchor_bottom = 1
+	unhandled_button.anchor_right = 1
+	unhandled_button.modulate.a = 0
+	unh_btn_canv.add_child(unhandled_button)
 
 func teleport(obj, card):
 	match obj:
@@ -18,23 +29,18 @@ func teleport(obj, card):
 			player.add_child(line)
 			
 			#take_input
+			var unh_btn_was_pressed = false
 			while card.pressed:
 				yield(get_tree(), "physics_frame")
-				
 				line.points = [
 					Vector2.ZERO,
 					(player.get_global_mouse_position() - player.global_position).limit_length(500)
 					]
 				
-				if Input.is_action_just_released("click"):
-					var cards_is_hovered = false
-					for c in get_tree().get_nodes_in_group("card"):
-						if c.is_hovered():
-							cards_is_hovered = true
-					
-					if not cards_is_hovered:
-						player.global_position += (player.get_global_mouse_position() - player.global_position).clamped(500)
-						line.points = []
+				if unh_btn_was_pressed and not unhandled_button.pressed:
+					player.global_position += (player.get_global_mouse_position() - player.global_position).limit_length(500)
+					line.points = []
+				unh_btn_was_pressed = unhandled_button.pressed
 			
 			player.remove_child(line)
 

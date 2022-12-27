@@ -50,6 +50,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -200.0
 margin_bottom = -172.0
+mouse_filter = 2
 alignment = 1
 
 [node name="Card" parent="CanvasLayer/VSeparator" instance=ExtResource( 2 )]
