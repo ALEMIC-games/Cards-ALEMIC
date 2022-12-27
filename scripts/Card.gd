@@ -7,7 +7,6 @@ var card_configuration = {
 signal raffle_started
 
 func _ready():
-	
 	#connecting actions to triggers
 	for key in card_configuration.keys():
 		var action = card_configuration[key][0]
@@ -19,20 +18,6 @@ func _ready():
 		match key:
 			'raffle_started':
 				print(connect('raffle_started', Actions, action, arguments))
-# TRIGGERED
-#func battle():
-#	pass
-#func battle_started():
-#	pass
-#func battle_finished():
-#	pass
-#func raffle():
-#	pass
-#func raffle_started():
-#	pass
-#func raffle_finished():
-#	pass
-
 
 func _on_Card_toggled(button_pressed):
 	if button_pressed:
