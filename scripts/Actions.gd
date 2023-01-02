@@ -45,16 +45,16 @@ func teleport(obj, card):
 						]
 				
 				if unh_btn_was_pressed and not unhandled_button.pressed:
-					var new_pos = player.global_position + (player.get_global_mouse_position() - player.global_position).limit_length(500)
 					line.points = []
-					player.get_node('AnimationPlayer').play('throw')
-					yield(player.get_node('AnimationPlayer'), 'card_used')
+					var new_pos = player.global_position + (player.get_global_mouse_position() - player.global_position).limit_length(500)
+					player.get_node('AnimationPlayer').play('throw', -1, 1.5)
+					yield(player.get_node('AnimationPlayer'), 'climax_reached')
 					var card_ptcl = load("res://scenes/LittleCard.tscn").instance()
 					get_tree().current_scene.add_child(card_ptcl)
-					card_ptcl.look_at(new_pos)
 					card_ptcl.global_position = player.global_position
+					card_ptcl.look_at(new_pos)
 					var tw = get_tree().create_tween()
-					tw.tween_property(card_ptcl, 'global_position', new_pos, (new_pos-player.global_position).length()/3000)
+					tw.tween_property(card_ptcl, 'global_position', new_pos, (new_pos-player.global_position).length()/1000)
 					tw.play()
 					yield(tw, "finished")
 					card_ptcl.queue_free()
