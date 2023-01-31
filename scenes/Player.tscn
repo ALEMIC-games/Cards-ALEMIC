@@ -58,6 +58,7 @@ tracks/1/keys = {
 script/source = "extends AnimationPlayer
 
 
+# warning-ignore:unused_signal
 signal climax_reached
 
 func _on_AnimationPlayer_animation_finished(_anim_name):

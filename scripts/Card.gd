@@ -17,7 +17,7 @@ func _ready():
 		
 		match key:
 			'raffle_started':
-				print(connect('raffle_started', Actions, action, arguments))
+				connect('raffle_started', Actions, action, arguments)
 
 func _on_Card_toggled(button_pressed):
 	if button_pressed:
